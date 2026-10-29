@@ -75,9 +75,46 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
 @keyframes glowPulse{from{opacity:.55;transform:scale(.92)}to{opacity:1;transform:scale(1.08)}}
 @media(max-width:480px){.hero{padding-top:35px}.hero-candle-wrap{height:220px}.hero-photo{height:280px}}
 
+
+/* Écran d’entrée : bougie géante et extrémités multicolores lumineuses */
+.memory-gate{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:auto;padding:18px 16px 28px;background:radial-gradient(ellipse at 50% 45%,#22265b 0%,#11132f 35%,#060714 72%,#02030a 100%);cursor:pointer;transition:opacity .9s ease,visibility .9s ease}
+.memory-gate::before,.memory-gate::after{content:"";position:absolute;width:70vw;height:70vw;max-width:560px;max-height:560px;border-radius:50%;filter:blur(60px);opacity:.22;pointer-events:none;animation:gateAura 5s ease-in-out infinite alternate}
+.memory-gate::before{background:#ff36d1;top:-35%;left:-30%}.memory-gate::after{background:#22dfff;bottom:-38%;right:-28%;animation-delay:1.2s}
+.memory-gate.gate-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.gate-stars{color:#fff2a6;letter-spacing:.55em;font-size:clamp(18px,4vw,30px);text-shadow:0 0 15px #fff,0 0 28px #ff44d8;animation:starsPulse 2s infinite alternate;position:relative;z-index:2}
+.gate-kicker{position:relative;z-index:2;margin-top:7px;color:#b9f6ff;font:700 11px Arial,sans-serif;letter-spacing:.32em;text-shadow:0 0 14px #28dfff}
+.gate-title{position:relative;z-index:2;font-size:clamp(28px,7vw,48px);line-height:1.08;font-weight:normal;margin:10px 0 0;color:#fff;text-shadow:0 0 15px #9c79ff,0 0 32px #ff47ce}
+.gate-title span{background:linear-gradient(90deg,#fff5a8,#ff8be9,#8df5ff,#b5ffb7,#fff5a8);background-size:300% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:colorRun 4s linear infinite}
+.giant-candle-area{position:relative;z-index:2;width:100%;height:clamp(255px,43vh,390px);display:flex;justify-content:center;align-items:flex-end;margin:4px auto 0;isolation:isolate}
+.rainbow-aura{position:absolute;bottom:0;width:clamp(220px,70vw,460px);height:clamp(240px,40vh,390px);border-radius:50%;background:conic-gradient(from 0deg,#ff2cc3,#ff9e35,#fff66b,#4dffad,#3bdcff,#8a55ff,#ff2cc3);filter:blur(38px);opacity:.42;animation:rainbowSpin 9s linear infinite}
+.giant-candle{position:relative;width:clamp(100px,26vw,150px);height:clamp(205px,34vh,300px);border-radius:22px 22px 15px 15px;background:linear-gradient(90deg,#9b58ff 0%,#d9c7ff 12%,#fff 30%,#fff9eb 53%,#ffb6f2 76%,#8b5cff 100%);box-shadow:inset 10px 0 15px #fff9,inset -12px 0 22px #5023b4a8,0 0 25px #a34cff,0 0 55px #ff43cf,0 0 95px #30dfff;overflow:hidden}
+.candle-shine{position:absolute;top:8%;bottom:8%;left:18%;width:12%;border-radius:100%;background:#fff;opacity:.8;filter:blur(5px)}
+.candle-rim{position:absolute;left:-2%;right:-2%;top:-5px;height:20px;border-radius:50%;background:linear-gradient(90deg,#ffb7f5,#fff,#a4f9ff,#fff0a0,#ffb7f5);box-shadow:0 0 22px #fff,0 0 45px #ff46d6}
+.giant-wick{position:absolute;z-index:2;bottom:clamp(200px,33.5vh,295px);width:6px;height:26px;background:#25223a;border-radius:6px;box-shadow:0 0 8px #fff}
+.giant-flame{position:absolute;z-index:3;bottom:clamp(220px,36vh,325px);width:clamp(48px,13vw,75px);height:clamp(83px,14vh,112px);border-radius:55% 45% 55% 45%;transform:rotate(2deg);background:radial-gradient(ellipse at 50% 70%,#fff 0 10%,#fff9a7 18%,#ffbf45 37%,#ff6c4a 58%,#ff38ce 72%,transparent 74%);filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 28px #ff8b27) drop-shadow(0 0 48px #ff2cc3);animation:giantFlameMove 1.1s ease-in-out infinite alternate}
+.giant-flame i{position:absolute;left:35%;top:24%;width:28%;height:50%;border-radius:50%;background:linear-gradient(#fff,#fff5a3);filter:blur(2px)}
+.candle-base-glow{position:absolute;bottom:-3px;width:clamp(160px,50vw,320px);height:25px;border-radius:50%;background:linear-gradient(90deg,#ff36c7,#ffce55,#55f5ff,#a75cff);filter:blur(14px);opacity:.95}
+.gate-dates,.gate-instruction,.gate-tap{position:relative;z-index:2}.gate-dates{font:11px Arial,sans-serif;letter-spacing:.16em;color:#e9eaff;margin:15px 0 5px}.gate-dates span{color:#ff83e3;padding:0 5px}.gate-instruction{font-size:clamp(14px,3.5vw,18px);line-height:1.5;color:#e3e5ff;margin:5px 0 12px}.gate-tap{font:700 11px Arial,sans-serif;letter-spacing:.18em;color:#fff5a6;text-shadow:0 0 12px #ff4edb;animation:tapPulse 1.5s infinite alternate}
+@keyframes giantFlameMove{from{transform:rotate(-5deg) scale(.94);filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 28px #ff8b27) drop-shadow(0 0 48px #ff2cc3)}to{transform:rotate(5deg) scale(1.08);filter:drop-shadow(0 0 18px #fff) drop-shadow(0 0 38px #ff8b27) drop-shadow(0 0 65px #ff2cc3)}}
+@keyframes rainbowSpin{to{transform:rotate(360deg)}}@keyframes colorRun{to{background-position:300% center}}@keyframes starsPulse{to{opacity:.5;transform:scale(1.08)}}@keyframes tapPulse{to{opacity:.55;letter-spacing:.24em}}@keyframes gateAura{to{transform:scale(1.25);opacity:.35}}
+@media(max-height:650px){.giant-candle-area{height:230px}.giant-candle{height:175px}.giant-wick{bottom:170px}.giant-flame{bottom:190px}.gate-title{font-size:27px}.gate-stars{font-size:16px}}
+
 </style>
 </head>
 <body>
+<div class="memory-gate" id="memoryGate" role="button" tabindex="0" aria-label="Cliquer sur la grande bougie pour entrer dans les souvenirs" onclick="enterMemorial()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();enterMemorial()}">
+  <div class="gate-stars" aria-hidden="true">✦　✧　✦　✧　✦</div>
+  <div class="gate-kicker">À LA MÉMOIRE DE</div>
+  <h1 class="gate-title">Ameshinda<br><span>Vumilia Alliance</span></h1>
+  <div class="giant-candle-area" aria-hidden="true">
+    <div class="rainbow-aura"></div><div class="giant-flame"><i></i></div>
+    <div class="giant-wick"></div><div class="giant-candle"><div class="candle-shine"></div><div class="candle-rim"></div></div>
+    <div class="candle-base-glow"></div>
+  </div>
+  <p class="gate-dates">03 NOVEMBRE 1996 <span>✦</span> 19 DÉCEMBRE 2022</p>
+  <p class="gate-instruction">Touchez la grande bougie pour ouvrir<br>les souvenirs de toute la famille</p>
+  <div class="gate-tap">✧ TOUCHER LA BOUGIE ✧</div>
+</div>
 <header class="hero">
   <div class="content">
     <div class="dove" aria-hidden="true">🕊️</div>
@@ -104,9 +141,11 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
 
 <div class="prayer">
   <div class="cross" aria-hidden="true">✝</div>
-  <h2 class="section-title">Une prière pour toi</h2>
-  <p>Seigneur, accueille Ameshinda dans ta paix éternelle. Console sa famille et tous ceux qui gardent son souvenir. Que la lumière éternelle brille sur lui et que l’amour partagé demeure une source de force et d’espérance.</p>
-  <p><em>Que son âme repose en paix. Amen.</em></p>
+  <h2 class="section-title">Prière de toute la famille en souvenir d’Ameshinda</h2>
+  <p>Seigneur notre Dieu, nous, toute la famille d’Ameshinda Vumilia Alliance, venons devant Toi avec nos souvenirs, notre amour et notre peine. Merci pour la vie qu’il a partagée avec nous, pour les sourires, les moments précieux et les traces qu’il a laissées dans nos cœurs.</p>
+  <p>Quand son absence nous pèse, donne-nous la force de nous soutenir les uns les autres et de rester unis. Que les beaux souvenirs deviennent une lumière sur notre chemin, que la paix habite nos cœurs et que l’amour familial demeure plus fort que la distance et le temps.</p>
+  <p>Reçois Ameshinda dans Ta paix et garde-le dans Ta lumière. Nous continuerons à faire vivre sa mémoire avec tendresse, respect et espérance. Cette prière est celle de toute sa famille, aujourd’hui et pour toujours.</p>
+  <p><em>À jamais aimé, à jamais regretté, à jamais dans nos cœurs. Amen.</em></p>
   <div class="music-box">
     <h3 style="font-weight:normal;color:#e3e8ff;margin:0">🎵 Musique du souvenir</h3>
     <p>La chanson essaie de démarrer dès l’ouverture du site. Certains navigateurs Android bloquent automatiquement le son; ce blocage dépend du navigateur et ne peut pas être forcé par le site.</p>
@@ -159,6 +198,11 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
 </div>
 <div class="lightbox" id="lightbox" onclick="closePhoto()"><button class="close" aria-label="Fermer" onclick="closePhoto()">×</button><img id="largePhoto" alt="Photo agrandie"></div>
 <script>
+function enterMemorial(){
+ const gate=document.getElementById('memoryGate');
+ if(gate){gate.classList.add('gate-hidden');setTimeout(()=>gate.remove(),950)}
+ startMemorialMusic();
+}
 function startMemorialMusic(){
  const audio=document.getElementById('memorialAudio');
  if(!audio) return;
@@ -182,7 +226,7 @@ document.getElementById('memoryForm').addEventListener('submit',function(e){
  e.preventDefault();
  const name=document.getElementById('visitorName').value.trim()||'Une personne qui se souvient de toi';
  const msg=document.getElementById('visitorMessage').value.trim();
- const text='Hommage à Ameshinda Vumilia Alliance\nDe : '+name+'\n\n'+msg+'\n\nÀ jamais dans nos cœurs. 🕊️';
+ const text='Hommage familial à Ameshinda Vumilia Alliance\nDe la famille / de : '+name+'\n\n'+msg+'\n\nÀ jamais dans nos cœurs. 🕊️';
  const result=document.getElementById('formResult');
  if(navigator.share){navigator.share({title:'Hommage à Ameshinda',text:text}).then(()=>{result.textContent='Merci pour ce témoignage. Vérifie le partage pour l’envoyer à ta famille.'}).catch(()=>showCopy(text,result))}
  else showCopy(text,result);

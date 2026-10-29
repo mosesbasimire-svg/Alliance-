@@ -1,7 +1,11 @@
-VERSION AUTONOME DU SITE HOMMAGE
+SITE HOMMAGE — AMESHINDA VUMILIA ALLIANCE
 
-Cette version contient les 10 photos et la chanson directement dans index.html : aucun dossier assets à téléverser.
+Le fichier index.html contient les photos et la musique intégrées.
 
-Dans le dépôt GitHub Alliance-, remplacez le fichier index.html par celui-ci. Ensuite attendez 1 à 3 minutes et rechargez la page en actualisant le navigateur.
+Publication GitHub Pages :
+1. Ouvrez le dépôt Alliance-.
+2. Remplacez le fichier index.html à la racine par celui-ci.
+3. Enregistrez/committez les changements.
+4. Attendez le déploiement GitHub Pages puis rechargez le site.
 
-La musique tente de démarrer automatiquement, mais Chrome/Android peut bloquer le son automatique. Dans ce cas, touchez une fois la page pour permettre au navigateur de lancer la musique. Le site ne peut pas contourner cette restriction.
+L'écran d'accueil présente une grande bougie multicolore animée. Touchez la bougie pour entrer dans les souvenirs. La musique tente de démarrer au clic. Le navigateur peut bloquer l'autoplay avant toute interaction, mais le clic sur la bougie lance aussi la tentative de lecture.
