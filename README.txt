@@ -19,3 +19,6 @@ IMPORTANT :
 - La musique se lance lorsque le visiteur appuie sur lecture.
 - Le formulaire de témoignage prépare un texte à partager mais ne l'enregistre pas publiquement.
 - Vérifiez que vous avez le droit de publier la chanson choisie sur un site public.
+
+
+MUSIQUE : le lecteur utilise exactement le chemin assets/hommage-musique.mp3. Dans GitHub, il faut téléverser le dossier assets et son fichier MP3, pas seulement index.html. Les noms doivent rester identiques (minuscules et tirets). Après publication, attends quelques minutes puis recharge la page. Appuie sur le bouton « Écouter la chanson » : les navigateurs mobiles bloquent souvent la lecture automatique.
