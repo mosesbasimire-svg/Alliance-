@@ -1,24 +1,11 @@
 SITE HOMMAGE — AMESHINDA VUMILIA ALLIANCE
 
-Contenu :
-- index.html : page du site avec écran d'accueil animé
-- assets/ : les photos de la galerie et le fichier audio hommage-musique.mp3
+Cette version utilise une palette bleu nuit, blanc argenté et violet lumineux, une grande bougie animée, et contient les 10 photos ainsi que le fichier audio.
 
-NOUVEAUTÉS :
-- Écran d'entrée avec bougie animée et bouton « Entrer dans les souvenirs »
-- Nom « Alliance » avec dégradé coloré et animation lumineuse
-- Galerie de photos, lecteur audio, prière, bougie virtuelle et formulaire de témoignage à partager
+IMPORTANT POUR GITHUB PAGES :
+1. Le fichier index.html doit être directement à la racine du dépôt GitHub.
+2. Le dossier assets doit être au même niveau que index.html. Il contient photo-01.jpg à photo-10.jpg et hommage-musique.mp3.
+3. Ne téléversez pas uniquement index.html. Téléversez aussi tout le dossier assets avec les fichiers à l’intérieur.
+4. Dans GitHub : Settings > Pages > Deploy from a branch > main > /(root).
 
-PUBLICATION GRATUITE AVEC GITHUB PAGES :
-1. Décompressez l'archive ZIP.
-2. Téléversez index.html et le dossier assets (avec les photos ET le MP3) dans la racine du dépôt GitHub.
-3. Dans Settings > Pages, choisissez la branche principale (souvent main) et le dossier /(root).
-4. Enregistrez et attendez que GitHub affiche l'adresse du site.
-
-IMPORTANT :
-- La musique se lance lorsque le visiteur appuie sur lecture.
-- Le formulaire de témoignage prépare un texte à partager mais ne l'enregistre pas publiquement.
-- Vérifiez que vous avez le droit de publier la chanson choisie sur un site public.
-
-
-MUSIQUE : le lecteur utilise exactement le chemin assets/hommage-musique.mp3. Dans GitHub, il faut téléverser le dossier assets et son fichier MP3, pas seulement index.html. Les noms doivent rester identiques (minuscules et tirets). Après publication, attends quelques minutes puis recharge la page. Appuie sur le bouton « Écouter la chanson » : les navigateurs mobiles bloquent souvent la lecture automatique.
+MUSIQUE : le site tente de démarrer la chanson automatiquement. Les navigateurs Android/Chrome peuvent bloquer le son automatique jusqu’à une interaction de l’utilisateur. Un site web ne peut pas contourner cette restriction de sécurité.
