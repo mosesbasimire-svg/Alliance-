@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111014">
+<meta name="description" content="Hommage à Ameshinda Vumilia Alliance, né le 3 novembre 1996 et décédé le 19 décembre 2022. À jamais dans nos cœurs.">
+<title>À jamais dans nos cœurs — Ameshinda Vumilia Alliance</title>
+<style>
+:root{--gold:#e0c58b;--cream:#f8f1e7;--muted:#c8c0bb;--bg:#100e12}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--cream);font-family:Georgia,'Times New Roman',serif;line-height:1.65}
+a{color:inherit}.hero{min-height:96vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:54px 18px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#4b3a32 0,#1c171d 48%,#0b0a0d 100%)}
+.hero:before,.hero:after{content:"✦";position:absolute;color:#e0c58b26;font-size:clamp(160px,35vw,360px);line-height:1;pointer-events:none;animation:glow 5s ease-in-out infinite alternate}.hero:before{top:-35px;left:-40px}.hero:after{right:-35px;bottom:-85px}
+@keyframes glow{from{opacity:.3;transform:scale(.94)}to{opacity:.8;transform:scale(1.04)}}
+.content{position:relative;z-index:1;max-width:850px}.dove{font-size:48px;color:var(--gold);margin-bottom:8px;animation:float 4s ease-in-out infinite}@keyframes float{50%{transform:translateY(-8px)}}
+.eyebrow{letter-spacing:.22em;text-transform:uppercase;font:12px/1.8 Arial,sans-serif;color:var(--gold)}
+h1{font-size:clamp(34px,7vw,68px);line-height:1.1;font-weight:normal;margin:14px 0;color:#fff7e8}
+.alliance-name{display:inline-block;font-weight:bold;letter-spacing:.09em;text-transform:uppercase;background:linear-gradient(90deg,#fff0a6,#f5c542,#fff8d6,#e8a0ff,#9fe7ff,#fff0a6);background-size:260% auto;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 24px #f4cf6b30;animation:allianceShine 5s linear infinite}
+@keyframes allianceShine{to{background-position:260% center}}
+.intro-screen{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(ellipse at center,#49352c 0,#19151d 48%,#070609 100%);transition:opacity 1s ease,visibility 1s ease}
+.intro-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.intro-card{max-width:620px;animation:introRise 1.2s ease both}
+@keyframes introRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.intro-candle{font-size:clamp(52px,10vw,84px);filter:drop-shadow(0 0 22px #ffbe55);animation:introFlicker 1.4s ease-in-out infinite alternate}
+@keyframes introFlicker{to{transform:scale(1.06) rotate(1deg);filter:drop-shadow(0 0 34px #ffd980)}}
+.intro-title{font-size:clamp(28px,7vw,48px);line-height:1.15;font-weight:normal;margin:16px 0;color:#fff4dc}
+.intro-copy{color:#d7c8b7;font-size:17px;margin:0 auto 26px;max-width:440px}
+.intro-screen .button{font-size:13px;padding:14px 22px;background:#d9bd8010}
+.dates{font:13px Arial,sans-serif;letter-spacing:.1em;color:var(--muted);margin:22px 0}
+.hero-photo{width:min(270px,70vw);height:min(340px,90vw);object-fit:cover;object-position:center 25%;border:2px solid var(--gold);padding:5px;background:#211d20;border-radius:140px 140px 10px 10px;box-shadow:0 0 45px #0009;margin:12px auto 22px;display:block}
+.subtitle{font-size:clamp(18px,3vw,23px);font-style:italic;color:#e6d8bd;margin:18px auto 28px}
+.button{display:inline-block;border:1px solid var(--gold);padding:11px 23px;text-decoration:none;color:var(--gold);font:12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;transition:.2s;margin:4px}.button:hover{background:var(--gold);color:#171419}
+section{padding:72px 20px;max-width:1050px;margin:auto}.section-title{text-align:center;font-size:clamp(27px,4vw,38px);font-weight:normal;margin:0 0 12px}.rule{width:70px;height:1px;background:var(--gold);margin:20px auto 30px}
+.message{max-width:720px;margin:auto;text-align:center;font-size:19px;color:#e6ded4}.message p{margin:0 0 18px}.signature{color:var(--gold);font-style:italic;font-size:22px;margin-top:28px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px}.photo{border:1px solid #6b5a3d;background:#1e1a20;padding:4px;cursor:pointer;overflow:hidden;min-height:180px}.photo img{display:block;width:100%;height:260px;object-fit:cover;transition:transform .35s}.photo:hover img{transform:scale(1.04)}
+.prayer{background:linear-gradient(135deg,#211b20,#151318);border-top:1px solid #d9bd8040;border-bottom:1px solid #d9bd8040;text-align:center;max-width:none;padding:65px 20px}.prayer p{max-width:700px;margin:12px auto;color:var(--muted);font-size:18px}.cross{font-size:28px;color:var(--gold)}
+.music-box{max-width:650px;margin:30px auto 0;padding:22px;border:1px solid #d9bd8055;background:#ffffff06;border-radius:12px;text-align:center}.music-box p{color:var(--muted);font-size:14px}.music-box audio{width:100%;margin-top:8px}
+.memorial-form{max-width:650px;margin:25px auto 0;display:grid;gap:12px}.memorial-form input,.memorial-form textarea{width:100%;padding:13px;border:1px solid #76664d;background:#19161b;color:var(--cream);font:16px Arial,sans-serif;border-radius:4px}.memorial-form textarea{min-height:110px;resize:vertical}.note{max-width:650px;margin:18px auto;color:var(--muted);font:13px/1.6 Arial,sans-serif;text-align:center}
+footer{text-align:center;padding:30px 15px 40px;color:#a8a09a;font:12px/1.8 Arial,sans-serif}footer strong{display:block;color:var(--gold);font:italic 18px Georgia,serif;margin-bottom:8px}
+.lightbox{display:none;position:fixed;inset:0;background:#000e;z-index:10;align-items:center;justify-content:center;padding:20px}.lightbox.show{display:flex}.lightbox img{max-width:95vw;max-height:88vh;object-fit:contain}.close{position:absolute;top:12px;right:18px;border:0;background:transparent;color:white;font-size:36px;cursor:pointer}
+#candles{position:fixed;bottom:14px;right:14px;z-index:5;border:1px solid var(--gold);background:#171319eF;color:var(--gold);padding:10px 14px;border-radius:30px;font:13px Arial,sans-serif;box-shadow:0 4px 20px #0008}
+.candle-message{display:none;position:fixed;inset:0;z-index:9;background:#08070beF;align-items:center;justify-content:center;padding:25px;text-align:center}.candle-message.show{display:flex}.candle-inner{max-width:420px}.flame{font-size:65px;filter:drop-shadow(0 0 20px #ffbd57);animation:flicker 1.2s infinite alternate}@keyframes flicker{to{transform:scale(1.08) rotate(2deg);filter:drop-shadow(0 0 30px #ffd37c)}}
+@media(min-width:700px){.gallery{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="intro-screen" id="introScreen">
+  <div class="intro-card">
+    <div class="intro-candle" aria-hidden="true">🕯️</div>
+    <div class="eyebrow">Un hommage d’amour et de mémoire</div>
+    <h2 class="intro-title">À jamais dans nos cœurs</h2>
+    <p class="intro-copy">Une lumière pour Ameshinda Vumilia Alliance. Son souvenir demeure vivant dans les cœurs de ceux qui l’aiment.</p>
+    <button class="button" type="button" onclick="enterMemorial()">Entrer dans les souvenirs 🕊️</button>
+  </div>
+</div>
+<header class="hero">
+  <div class="content">
+    <div class="dove" aria-hidden="true">🕊️</div>
+    <div class="eyebrow">En mémoire d’un frère bien-aimé</div>
+    <h1>Ameshinda<br>Vumilia <span class="alliance-name">Alliance</span></h1>
+    <img class="hero-photo" src="assets/photo-02.jpg" alt="Portrait souvenir d’Ameshinda Vumilia Alliance">
+    <div class="dates">03 NOVEMBRE 1996 <span style="color:var(--gold)">✦</span> 19 DÉCEMBRE 2022</div>
+    <p class="subtitle">« À jamais dans nos cœurs, jamais oublié. »</p>
+    <a class="button" href="#hommage">Lire son hommage</a>
+    <a class="button" href="#souvenirs">Voir les souvenirs</a>
+  </div>
+</header>
+
+<section id="hommage">
+  <h2 class="section-title">Un souvenir éternel</h2><div class="rule"></div>
+  <div class="message">
+    <p>Il y a des personnes dont la présence marque une vie pour toujours. Même lorsque leur chemin sur cette terre s’achève, l’amour qu’elles ont partagé et les souvenirs qu’elles laissent continuent de vivre dans le cœur de ceux qui les aiment.</p>
+    <p>Ameshinda, ton absence laisse un vide, mais ton souvenir demeure parmi nous. Chaque photo rappelle un instant précieux, chaque souvenir garde une part de toi vivante dans nos cœurs.</p>
+    <p>Le temps passe, mais l’amour d’une famille ne s’efface pas. Tu resteras toujours notre frère, une partie de notre histoire et un nom que nous prononcerons avec tendresse.</p>
+    <div class="signature">Repose en paix, grand frère. 🕊️</div>
+  </div>
+</section>
+
+<div class="prayer">
+  <div class="cross" aria-hidden="true">✝</div>
+  <h2 class="section-title">Une prière pour toi</h2>
+  <p>Seigneur, accueille Ameshinda dans ta paix éternelle. Console sa famille et tous ceux qui gardent son souvenir. Que la lumière éternelle brille sur lui et que l’amour partagé demeure une source de force et d’espérance.</p>
+  <p><em>Que son âme repose en paix. Amen.</em></p>
+  <div class="music-box">
+    <h3 style="font-weight:normal;color:var(--gold);margin:0">🎵 Une musique en souvenir</h3>
+    <p>Appuie sur lecture pour écouter la chanson que la famille a choisie. La musique ne démarre pas automatiquement afin de respecter le visiteur.</p>
+    <audio controls preload="metadata">
+      <source src="assets/hommage-musique.mp3" type="audio/mpeg">
+      Votre navigateur ne prend pas en charge la lecture audio.
+    </audio>
+  </div>
+</div>
+
+<section id="souvenirs">
+  <h2 class="section-title">Galerie de souvenirs</h2><div class="rule"></div>
+  <p style="text-align:center;color:var(--muted);margin:-10px auto 30px">Quelques images pour garder son sourire et les beaux moments en mémoire. Touchez une photo pour l’agrandir.</p>
+  <div class="gallery"><button class="photo" type="button" aria-label="Agrandir la photo 1" onclick="openPhoto(this)"><img src="assets/photo-01.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 2" onclick="openPhoto(this)"><img src="assets/photo-02.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 3" onclick="openPhoto(this)"><img src="assets/photo-03.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 4" onclick="openPhoto(this)"><img src="assets/photo-04.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 5" onclick="openPhoto(this)"><img src="assets/photo-05.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 6" onclick="openPhoto(this)"><img src="assets/photo-06.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 7" onclick="openPhoto(this)"><img src="assets/photo-07.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 8" onclick="openPhoto(this)"><img src="assets/photo-08.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 9" onclick="openPhoto(this)"><img src="assets/photo-09.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button>
+<button class="photo" type="button" aria-label="Agrandir la photo 10" onclick="openPhoto(this)"><img src="assets/photo-10.jpg" alt="Souvenir d’Ameshinda Vumilia Alliance" loading="lazy"></button></div>
+</section>
+
+<section id="temoignages">
+  <h2 class="section-title">Un message pour Ameshinda</h2><div class="rule"></div>
+  <p style="text-align:center;color:var(--muted);max-width:680px;margin:auto">Écris un souvenir, une prière ou quelques mots du cœur. Le bouton prépare un message que tu peux copier ou partager. Pour publier des témoignages visibles par tout le monde, il faudra connecter ensuite un service de formulaire en ligne.</p>
+  <form class="memorial-form" id="memoryForm">
+    <input id="visitorName" type="text" maxlength="70" placeholder="Ton nom (facultatif)">
+    <textarea id="visitorMessage" maxlength="1200" required placeholder="Ton message ou ton souvenir…"></textarea>
+    <button class="button" type="submit" style="background:transparent;cursor:pointer">Préparer mon témoignage</button>
+  </form>
+  <p class="note" id="formResult" aria-live="polite">Les messages ne sont pas envoyés ni enregistrés automatiquement sur ce site.</p>
+</section>
+
+<footer>
+  <strong>Ameshinda Vumilia <span class="alliance-name">Alliance</span></strong>
+  Né le 03 novembre 1996 · Décédé le 19 décembre 2022<br>
+  <span>Ton souvenir vivra toujours dans nos cœurs. 🕊️</span>
+</footer>
+<button id="candles" type="button" onclick="showCandle()">🕯️ Allumer une bougie</button>
+<div class="candle-message" id="candleOverlay" onclick="hideCandle()">
+  <div class="candle-inner" onclick="event.stopPropagation()">
+    <div class="flame">🕯️</div><h2 style="font-weight:normal;color:var(--gold)">Une lumière pour Ameshinda</h2>
+    <p style="color:var(--cream);font-size:18px">Que cette petite lumière symbolise l’amour, la prière et le souvenir qui ne s’éteignent jamais.</p>
+    <p style="color:var(--muted)">À jamais dans nos cœurs. 🕊️</p>
+    <button class="button" onclick="hideCandle()">Fermer</button>
+  </div>
+</div>
+<div class="lightbox" id="lightbox" onclick="closePhoto()"><button class="close" aria-label="Fermer" onclick="closePhoto()">×</button><img id="largePhoto" alt="Photo agrandie"></div>
+<script>
+function enterMemorial(){
+ const intro=document.getElementById('introScreen');
+ intro.classList.add('hidden');
+ try{sessionStorage.setItem('ameshindaIntroSeen','yes')}catch(e){}
+}
+try{if(sessionStorage.getItem('ameshindaIntroSeen')==='yes'){document.getElementById('introScreen').classList.add('hidden')}}catch(e){}
+function openPhoto(button){const img=button.querySelector('img');document.getElementById('largePhoto').src=img.src;document.getElementById('lightbox').classList.add('show')}
+function closePhoto(){document.getElementById('lightbox').classList.remove('show')}
+function showCandle(){document.getElementById('candleOverlay').classList.add('show')}
+function hideCandle(){document.getElementById('candleOverlay').classList.remove('show')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closePhoto();hideCandle()}});
+document.getElementById('memoryForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const name=document.getElementById('visitorName').value.trim()||'Une personne qui se souvient de toi';
+ const msg=document.getElementById('visitorMessage').value.trim();
+ const text='Hommage à Ameshinda Vumilia Alliance\nDe : '+name+'\n\n'+msg+'\n\nÀ jamais dans nos cœurs. 🕊️';
+ const result=document.getElementById('formResult');
+ if(navigator.share){navigator.share({title:'Hommage à Ameshinda',text:text}).then(()=>{result.textContent='Merci pour ce témoignage. Vérifie le partage pour l’envoyer à ta famille.'}).catch(()=>showCopy(text,result))}
+ else showCopy(text,result);
+});
+function showCopy(text,result){
+ result.textContent=text+' — Sélectionne et copie ce texte pour le partager.';
+ const box=document.createElement('textarea');box.value=text;box.readOnly=true;box.style.cssText='width:100%;min-height:140px;margin-top:12px;background:#19161b;color:#f8f1e7;padding:12px;border:1px solid #d9bd80';
+ result.appendChild(document.createElement('br'));result.appendChild(box);box.focus();box.select();
+}
+</script>
+</body>
+</html>
