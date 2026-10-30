@@ -229,6 +229,8 @@ const SUPABASE_URL = 'https://baqzadufldkbriiudpqo.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_azPxYrBbCnJUBNzU-TIMcQ_gMBH7XXT';
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
+async function sha256Hex(value){const bytes=new TextEncoder().encode(value);const hash=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+function newEditCode(){const b=new Uint8Array(24);crypto.getRandomValues(b);return [...b].map(x=>x.toString(16).padStart(2,'0')).join('');}
 async function loadApprovedMemories() {
  const container=document.getElementById('approvedMemories');
  container.innerHTML='<p style="text-align:center;color:var(--muted)">Chargement des hommages…</p>';
@@ -243,7 +245,12 @@ async function loadApprovedMemories() {
    const body=document.createElement('p'); body.style.cssText='white-space:pre-wrap;color:var(--cream);margin:10px 0'; body.textContent=item.message; card.appendChild(body);
    if(item.photo_url){const img=document.createElement('img');img.src=item.photo_url;img.alt='Photo souvenir';img.loading='lazy';img.style.cssText='display:block;max-width:100%;max-height:360px;object-fit:contain;border-radius:8px;margin-top:12px';card.appendChild(img);}
    const date=document.createElement('small');date.style.color='var(--muted)';date.textContent=item.date_creation?new Date(item.date_creation).toLocaleDateString('fr-FR'):'';card.appendChild(date);
-   container.appendChild(card);
+   const actions=document.createElement('div');actions.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin-top:14px';
+   const edit=document.createElement('button');edit.type='button';edit.className='button';edit.textContent='Modifier mon hommage';edit.style.cssText='cursor:pointer;padding:8px 12px;font-size:.9rem';
+   edit.onclick=async()=>{const code=prompt('Entre le code personnel reçu lors de la publication de cet hommage :');if(!code)return;const newName=prompt('Modifier le nom :',item.nom||'Anonyme');if(newName===null)return;const newMessage=prompt('Modifier le message :',item.message||'');if(newMessage===null||!newMessage.trim())return;const {data,error}=await supabaseClient.rpc('modifier_hommage',{p_id:item.id,p_token_hash:await sha256Hex(code.trim()),p_nom:newName.trim()||'Anonyme',p_message:newMessage.trim()});if(error||!data){alert('Modification impossible : code incorrect ou erreur.');return;}alert('Hommage modifié.');loadApprovedMemories();};
+   const del=document.createElement('button');del.type='button';del.className='button';del.textContent='Supprimer mon hommage';del.style.cssText='cursor:pointer;padding:8px 12px;font-size:.9rem';
+   del.onclick=async()=>{const code=prompt('Entre le code personnel reçu lors de la publication de cet hommage :');if(!code)return;if(!confirm('Supprimer définitivement cet hommage ?'))return;const {data,error}=await supabaseClient.rpc('supprimer_hommage',{p_id:item.id,p_token_hash:await sha256Hex(code.trim())});if(error||!data){alert('Suppression impossible : code incorrect ou erreur.');return;}alert('Hommage supprimé.');loadApprovedMemories();};
+   actions.append(edit,del);card.appendChild(actions);container.appendChild(card);
  });
 }
 
@@ -267,10 +274,13 @@ document.getElementById('memoryForm').addEventListener('submit',async function(e
      const {data:publicData}=supabaseClient.storage.from('photos-hommages').getPublicUrl(path);
      photoUrl=publicData.publicUrl;
    }
-   const {error}=await supabaseClient.from('hommages').insert([{nom:name,message:msg,photo_url:photoUrl,statut:'approuve'}]);
+   const editCode=newEditCode();
+   const tokenHash=await sha256Hex(editCode);
+   const {error}=await supabaseClient.from('hommages').insert([{nom:name,message:msg,photo_url:photoUrl,statut:'approuve',edit_token_hash:tokenHash}]);
    if(error) throw error;
    document.getElementById('memoryForm').reset();
-   result.textContent='Merci pour ton hommage. ❤️ Il est maintenant publié et visible par tous les visiteurs.';
+   result.textContent='Merci ! Ton hommage est publié. Garde ce code secret pour pouvoir le modifier ou le supprimer : '+editCode;
+   result.style.cssText='text-align:center;color:var(--gold);overflow-wrap:anywhere;padding:12px;border:1px solid #d9bd8055;border-radius:10px';
  }catch(err){console.error(err);result.textContent='Échec de l’envoi. Vérifie ta connexion ou la configuration Supabase, puis réessaie.';}
  finally{button.disabled=false;button.textContent='Envoyer mon hommage';}
 });
