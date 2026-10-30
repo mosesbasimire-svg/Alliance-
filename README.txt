@@ -1,6 +1,7 @@
-VERSION AVEC MODIFICATION ET SUPPRESSION DES HOMMAGES
+SITE HOMMAGE AMESHINDA — PUBLICATION LIBRE
 
-1) Dans Supabase SQL Editor, exécuter le fichier SQL fourni séparément par ChatGPT.
-2) Remplacer index.html dans le dépôt GitHub par celui de ce ZIP.
-3) Lorsqu'une personne publie un hommage, un code personnel s'affiche : elle doit le conserver. Il permet de modifier ou supprimer uniquement son hommage.
-4) Ne jamais partager le code personnel. Les boutons Modifier/Supprimer sont visibles sur les cartes, mais nécessitent le code secret correspondant.
+Le site permet aux visiteurs de publier des hommages et photos. Chaque hommage affiche les boutons Modifier et Supprimer sans demander de code.
+
+ATTENTION : avec cette configuration publique sans code ni compte, tout visiteur peut modifier ou supprimer n’importe quel hommage. Il n’existe aucun moyen technique de distinguer l’auteur des autres visiteurs sans authentification ou secret.
+
+Après remplacement de index.html sur GitHub Pages, exécuter le SQL fourni dans le message ChatGPT pour autoriser UPDATE et DELETE via Supabase.
