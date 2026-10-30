@@ -1,0 +1,11 @@
+APPLICATION INSTALLABLE — HOMMAGE À AMESHINDA
+
+1. Décompressez ce ZIP.
+2. Téléversez TOUS les fichiers à la racine du dépôt GitHub Pages (pas seulement index.html).
+3. Conservez le nom index.html et validez les changements.
+4. Attendez la publication GitHub Pages et ouvrez le site avec Chrome sur Android.
+5. Dans Chrome, ouvrez le menu ⋮ puis choisissez « Installer l'application » ou « Ajouter à l'écran d'accueil ».
+
+L'icône utilise la photo déjà présente sur la page hommage.
+La connexion Supabase reste en ligne : les hommages nécessitent Internet.
+Ne publiez jamais de clé Supabase secrète dans le site.

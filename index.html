@@ -100,6 +100,13 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
 @media(max-height:650px){.giant-candle-area{height:230px}.giant-candle{height:175px}.giant-wick{bottom:170px}.giant-flame{bottom:190px}.gate-title{font-size:27px}.gate-stars{font-size:16px}}
 
 </style>
+
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="./icon-192.jpg">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ameshinda">
 </head>
 <body>
 <div class="memory-gate" id="memoryGate" role="button" tabindex="0" aria-label="Cliquer sur la grande bougie pour entrer dans les souvenirs" onclick="enterMemorial()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();enterMemorial()}">
@@ -288,6 +295,14 @@ function showCopy(text,result){
  result.textContent=text+' — Sélectionne et copie ce texte pour le partager.';
  const box=document.createElement('textarea');box.value=text;box.readOnly=true;box.style.cssText='width:100%;min-height:140px;margin-top:12px;background:#19161b;color:#f8f1e7;padding:12px;border:1px solid #d9bd80';
  result.appendChild(document.createElement('br'));result.appendChild(box);box.focus();box.select();
+}
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(err => console.error('Service worker:', err));
+  });
 }
 </script>
 </body>

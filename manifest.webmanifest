@@ -1,0 +1,25 @@
+{
+  "name": "Hommage à Ameshinda Vumilia Alliance",
+  "short_name": "Ameshinda",
+  "description": "À jamais dans nos cœurs — espace de souvenirs et d'hommages.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#100e12",
+  "theme_color": "#100e12",
+  "icons": [
+    {
+      "src": "./icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
