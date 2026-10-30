@@ -171,7 +171,7 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
 
 <section id="temoignages">
   <h2 class="section-title">Hommages à Ameshinda</h2><div class="rule"></div>
-  <p style="text-align:center;color:var(--muted);max-width:680px;margin:0 auto 24px">Laisse un souvenir, une prière ou quelques mots du cœur. Chaque témoignage sera vérifié avant d’être publié. Les hommages approuvés seront visibles par tous les visiteurs.</p>
+  <p style="text-align:center;color:var(--muted);max-width:680px;margin:0 auto 24px">Laisse un souvenir, une prière ou quelques mots du cœur. Chaque témoignage envoyé sera publié immédiatement et visible par tous les visiteurs.</p>
   <form class="memorial-form" id="memoryForm">
     <input id="visitorName" type="text" maxlength="70" placeholder="Ton nom (facultatif)">
     <textarea id="visitorMessage" maxlength="1200" required placeholder="Ton message ou ton souvenir…"></textarea>
@@ -179,7 +179,7 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
     <input id="visitorPhoto" type="file" accept="image/jpeg,image/png,image/webp">
     <button class="button" id="submitMemory" type="submit" style="background:transparent;cursor:pointer">Envoyer mon hommage</button>
   </form>
-  <p class="note" id="formResult" aria-live="polite" style="text-align:center;color:var(--muted)">Les témoignages sont publiés après validation par la famille.</p>
+  <p class="note" id="formResult" aria-live="polite" style="text-align:center;color:var(--muted)">Les hommages envoyés apparaîtront ici pour tous les visiteurs.</p>
   <div id="approvedMemories" style="max-width:760px;margin:35px auto 0"></div>
 </section>
 
@@ -232,7 +232,7 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLI
 async function loadApprovedMemories() {
  const container=document.getElementById('approvedMemories');
  container.innerHTML='<p style="text-align:center;color:var(--muted)">Chargement des hommages…</p>';
- const {data,error}=await supabaseClient.from('hommages').select('id,nom,message,photo_url,date_creation').eq('statut','approuve').order('date_creation',{ascending:false});
+ const {data,error}=await supabaseClient.from('hommages').select('id,nom,message,photo_url,date_creation').order('date_creation',{ascending:false});
  if(error) {container.innerHTML='<p style="text-align:center;color:var(--muted)">Les hommages publiés seront affichés ici.</p>'; console.error(error); return;}
  if(!data || data.length===0) {container.innerHTML='<p style="text-align:center;color:var(--muted)">Aucun hommage publié pour le moment. Sois le premier à partager un souvenir. 🕊️</p>';return;}
  container.innerHTML='<h3 style="text-align:center;color:var(--gold);font-weight:normal;margin-bottom:22px">Messages partagés</h3>';
@@ -267,10 +267,10 @@ document.getElementById('memoryForm').addEventListener('submit',async function(e
      const {data:publicData}=supabaseClient.storage.from('photos-hommages').getPublicUrl(path);
      photoUrl=publicData.publicUrl;
    }
-   const {error}=await supabaseClient.from('hommages').insert([{nom:name,message:msg,photo_url:photoUrl,statut:'en_attente'}]);
+   const {error}=await supabaseClient.from('hommages').insert([{nom:name,message:msg,photo_url:photoUrl,statut:'approuve'}]);
    if(error) throw error;
    document.getElementById('memoryForm').reset();
-   result.textContent='Merci pour ton hommage. ❤️ Il sera visible par tous après validation par la famille.';
+   result.textContent='Merci pour ton hommage. ❤️ Il est maintenant publié et visible par tous les visiteurs.';
  }catch(err){console.error(err);result.textContent='Échec de l’envoi. Vérifie ta connexion ou la configuration Supabase, puis réessaie.';}
  finally{button.disabled=false;button.textContent='Envoyer mon hommage';}
 });
