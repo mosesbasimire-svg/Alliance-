@@ -170,14 +170,17 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
 </section>
 
 <section id="temoignages">
-  <h2 class="section-title">Un message pour Ameshinda</h2><div class="rule"></div>
-  <p style="text-align:center;color:var(--muted);max-width:680px;margin:auto">Écris un souvenir, une prière ou quelques mots du cœur. Le bouton prépare un message que tu peux copier ou partager. Pour publier des témoignages visibles par tout le monde, il faudra connecter ensuite un service de formulaire en ligne.</p>
+  <h2 class="section-title">Hommages à Ameshinda</h2><div class="rule"></div>
+  <p style="text-align:center;color:var(--muted);max-width:680px;margin:0 auto 24px">Laisse un souvenir, une prière ou quelques mots du cœur. Chaque témoignage sera vérifié avant d’être publié. Les hommages approuvés seront visibles par tous les visiteurs.</p>
   <form class="memorial-form" id="memoryForm">
     <input id="visitorName" type="text" maxlength="70" placeholder="Ton nom (facultatif)">
     <textarea id="visitorMessage" maxlength="1200" required placeholder="Ton message ou ton souvenir…"></textarea>
-    <button class="button" type="submit" style="background:transparent;cursor:pointer">Préparer mon témoignage</button>
+    <label for="visitorPhoto" style="display:block;margin:14px 0 6px;color:var(--muted)">Ajouter une photo (facultatif, JPG/PNG/WebP, 10 Mo maximum)</label>
+    <input id="visitorPhoto" type="file" accept="image/jpeg,image/png,image/webp">
+    <button class="button" id="submitMemory" type="submit" style="background:transparent;cursor:pointer">Envoyer mon hommage</button>
   </form>
-  <p class="note" id="formResult" aria-live="polite">Les messages ne sont pas envoyés ni enregistrés automatiquement sur ce site.</p>
+  <p class="note" id="formResult" aria-live="polite" style="text-align:center;color:var(--muted)">Les témoignages sont publiés après validation par la famille.</p>
+  <div id="approvedMemories" style="max-width:760px;margin:35px auto 0"></div>
 </section>
 
 <footer>
@@ -195,6 +198,7 @@ footer{color:#c5cce8}footer strong{color:#e3e8ff}
   </div>
 </div>
 <div class="lightbox" id="lightbox" onclick="closePhoto()"><button class="close" aria-label="Fermer" onclick="closePhoto()">×</button><img id="largePhoto" alt="Photo agrandie"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 function enterMemorial(){
  const gate=document.getElementById('memoryGate');
@@ -220,15 +224,58 @@ function closePhoto(){document.getElementById('lightbox').classList.remove('show
 function showCandle(){document.getElementById('candleOverlay').classList.add('show')}
 function hideCandle(){document.getElementById('candleOverlay').classList.remove('show')}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closePhoto();hideCandle()}});
-document.getElementById('memoryForm').addEventListener('submit',function(e){
+// Connexion Supabase : clé publique publishable uniquement.
+const SUPABASE_URL = 'https://baqzadufldkbriiudpqo.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_azPxYrBbCnJUBNzU-TIMcQ_gMBH7XXT';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+async function loadApprovedMemories() {
+ const container=document.getElementById('approvedMemories');
+ container.innerHTML='<p style="text-align:center;color:var(--muted)">Chargement des hommages…</p>';
+ const {data,error}=await supabaseClient.from('hommages').select('id,nom,message,photo_url,date_creation').eq('statut','approuve').order('date_creation',{ascending:false});
+ if(error) {container.innerHTML='<p style="text-align:center;color:var(--muted)">Les hommages publiés seront affichés ici.</p>'; console.error(error); return;}
+ if(!data || data.length===0) {container.innerHTML='<p style="text-align:center;color:var(--muted)">Aucun hommage publié pour le moment. Sois le premier à partager un souvenir. 🕊️</p>';return;}
+ container.innerHTML='<h3 style="text-align:center;color:var(--gold);font-weight:normal;margin-bottom:22px">Messages partagés</h3>';
+ data.forEach(item=>{
+   const card=document.createElement('article');
+   card.style.cssText='border:1px solid #d9bd8055;background:#ffffff06;border-radius:12px;padding:18px;margin:14px 0;text-align:left';
+   const author=document.createElement('strong'); author.style.color='var(--gold)'; author.textContent=item.nom || 'Anonyme'; card.appendChild(author);
+   const body=document.createElement('p'); body.style.cssText='white-space:pre-wrap;color:var(--cream);margin:10px 0'; body.textContent=item.message; card.appendChild(body);
+   if(item.photo_url){const img=document.createElement('img');img.src=item.photo_url;img.alt='Photo souvenir';img.loading='lazy';img.style.cssText='display:block;max-width:100%;max-height:360px;object-fit:contain;border-radius:8px;margin-top:12px';card.appendChild(img);}
+   const date=document.createElement('small');date.style.color='var(--muted)';date.textContent=item.date_creation?new Date(item.date_creation).toLocaleDateString('fr-FR'):'';card.appendChild(date);
+   container.appendChild(card);
+ });
+}
+
+document.getElementById('memoryForm').addEventListener('submit',async function(e){
  e.preventDefault();
- const name=document.getElementById('visitorName').value.trim()||'Une personne qui se souvient de toi';
- const msg=document.getElementById('visitorMessage').value.trim();
- const text='Hommage familial à Ameshinda Vumilia Alliance\nDe la famille / de : '+name+'\n\n'+msg+'\n\nÀ jamais dans nos cœurs. 🕊️';
+ const button=document.getElementById('submitMemory');
  const result=document.getElementById('formResult');
- if(navigator.share){navigator.share({title:'Hommage à Ameshinda',text:text}).then(()=>{result.textContent='Merci pour ce témoignage. Vérifie le partage pour l’envoyer à ta famille.'}).catch(()=>showCopy(text,result))}
- else showCopy(text,result);
+ const name=document.getElementById('visitorName').value.trim() || 'Anonyme';
+ const msg=document.getElementById('visitorMessage').value.trim();
+ const file=document.getElementById('visitorPhoto').files[0];
+ if(!msg){result.textContent='Écris un message avant de l’envoyer.';return;}
+ if(file && (!['image/jpeg','image/png','image/webp'].includes(file.type) || file.size>10*1024*1024)){result.textContent='Choisis une image JPG, PNG ou WebP de 10 Mo maximum.';return;}
+ button.disabled=true;button.textContent='Envoi en cours…';result.textContent='Ton hommage est en cours d’envoi.';
+ try{
+   let photoUrl=null;
+   if(file){
+     const ext=file.name.split('.').pop().toLowerCase().replace(/[^a-z0-9]/g,'') || 'jpg';
+     const path=Date.now()+'-'+Math.random().toString(36).slice(2)+'.'+ext;
+     const {error:uploadError}=await supabaseClient.storage.from('photos-hommages').upload(path,file,{contentType:file.type,upsert:false});
+     if(uploadError) throw uploadError;
+     const {data:publicData}=supabaseClient.storage.from('photos-hommages').getPublicUrl(path);
+     photoUrl=publicData.publicUrl;
+   }
+   const {error}=await supabaseClient.from('hommages').insert([{nom:name,message:msg,photo_url:photoUrl,statut:'en_attente'}]);
+   if(error) throw error;
+   document.getElementById('memoryForm').reset();
+   result.textContent='Merci pour ton hommage. ❤️ Il sera visible par tous après validation par la famille.';
+ }catch(err){console.error(err);result.textContent='Échec de l’envoi. Vérifie ta connexion ou la configuration Supabase, puis réessaie.';}
+ finally{button.disabled=false;button.textContent='Envoyer mon hommage';}
 });
+loadApprovedMemories();
+
 function showCopy(text,result){
  result.textContent=text+' — Sélectionne et copie ce texte pour le partager.';
  const box=document.createElement('textarea');box.value=text;box.readOnly=true;box.style.cssText='width:100%;min-height:140px;margin-top:12px;background:#19161b;color:#f8f1e7;padding:12px;border:1px solid #d9bd80';
