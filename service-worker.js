@@ -1,5 +1,5 @@
-const CACHE_NAME = 'ameshinda-hommage-v1';
-const APP_FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.jpg', './icon-512.jpg'];
+const CACHE_NAME = 'ameshinda-hommage-v2';
+const APP_FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.jpg', './icon-512.jpg', './Ameshinda-repose-en-paix.mp3'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_FILES)));
